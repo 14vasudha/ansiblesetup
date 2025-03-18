@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/14vasudha/ansiblesetup.git' 
+                git branch: 'main', url: 'https://github.com/14vasudha/ansiblesetup.git'
             }
         }
 
@@ -17,3 +17,4 @@ pipeline {
         }
     }
 }
+
