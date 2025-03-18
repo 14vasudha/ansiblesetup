@@ -18,7 +18,7 @@
       when: inventory_hostname == "13.216.113.122"
 
     - name: Install Nginx on Instance 3
-      amazonlinux_extras:
+      community.general.amazonlinux_extras:
         name: nginx1
         state: enabled
       when: inventory_hostname == "44.218.82.179"
