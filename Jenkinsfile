@@ -10,7 +10,10 @@ pipeline {
 
         stage('Run Ansible Playbook') {
             steps {
-                sh 'ansible-playbook -i /etc/ansible/hosts installwebservers.yml'
+                sh '''
+                export ANSIBLE_HOST_KEY_CHECKING=False
+                ansible-playbook -i /etc/ansible/hosts installwebservers.yml
+                '''
             }
         }
     }
