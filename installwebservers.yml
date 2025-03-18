@@ -1,0 +1,37 @@
+---
+- name: Install Web Servers (Apache on one, Nginx on another)
+  hosts: web_servers
+  become: yes
+  tasks:
+
+    - name: Install Apache (httpd) on Instance 2
+      yum:
+        name: httpd
+        state: present
+      when: inventory_hostname == "13.216.113.122"
+
+    - name: Start and Enable Apache
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+      when: inventory_hostname == "13.216.113.122"
+
+    - name: Install Nginx on Instance 3
+      amazonlinux_extras:
+        name: nginx1
+        state: enabled
+      when: inventory_hostname == "44.218.82.179"
+
+    - name: Install Nginx
+      yum:
+        name: nginx
+        state: present
+      when: inventory_hostname == "44.218.82.179"
+
+    - name: Start and Enable Nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+      when: inventory_hostname == "44.218.82.179"
